@@ -1,6 +1,6 @@
 package parser;
 
-public class ExcelHeaderFormatException extends Exception{// Исключение неправильного количества строк в заголовке файла
+public class ExcelHeaderFormatException extends Exception{// РСЃРєР»СЋС‡РµРЅРёРµ РЅРµРїСЂР°РІРёР»СЊРЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СЂРѕРє РІ Р·Р°РіРѕР»РѕРІРєРµ С„Р°Р№Р»Р°
 	private static final long serialVersionUID = 1L;
 
 	ExcelHeaderFormatException(){

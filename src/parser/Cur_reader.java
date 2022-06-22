@@ -10,69 +10,69 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 
-public class Cur_reader implements Excel_reader {// Класс чтения данных из Excel
+public class Cur_reader implements Excel_reader {// РљР»Р°СЃСЃ С‡С‚РµРЅРёСЏ РґР°РЅРЅС‹С… РёР· Excel
 	
-	protected Workbook wb;//экземпляр класса для работы с Excel
-	protected Sheet sheet;//экземпляр класса страницы Excel
-	protected int row_num;// число строк в таблице Excel
-	protected Cell_value_i cll_value;//экземпляр класса обработки ячейки Excel
+	protected Workbook wb;//СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Excel
+	protected Sheet sheet;//СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° СЃС‚СЂР°РЅРёС†С‹ Excel
+	protected int row_num;// С‡РёСЃР»Рѕ СЃС‚СЂРѕРє РІ С‚Р°Р±Р»РёС†Рµ Excel
+	protected Cell_value_i cll_value;//СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РѕР±СЂР°Р±РѕС‚РєРё СЏС‡РµР№РєРё Excel
 	
-	//Конструктор
-	//bk - экземпляр класса для работы с Excel
-	//sh - экземпляр класса страницы Excel
-	//vl - экземпляр класса обработки ячейки Excel
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+	//bk - СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Excel
+	//sh - СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° СЃС‚СЂР°РЅРёС†С‹ Excel
+	//vl - СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РѕР±СЂР°Р±РѕС‚РєРё СЏС‡РµР№РєРё Excel
 	Cur_reader(Workbook bk, Sheet sh,Cell_value_i vl) throws Exception{
-		if(bk==null) {// если экземпляр класса для работы с Excel - null
-			throw new IllegalArgumentException("Error. Wrong exemplar of Workbook");//выбрасываем исключение
+		if(bk==null) {// РµСЃР»Рё СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Excel - null
+			throw new IllegalArgumentException("Error. Wrong exemplar of Workbook");//РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 		}
 		wb=bk;
-		if(sh==null) {// если экземпляр класса для страницы Excel - null
-    		throw new IllegalArgumentException("Error. Wrong exemplar of \"Sheet\"");//выбрасываем исключение
+		if(sh==null) {// РµСЃР»Рё СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЃС‚СЂР°РЅРёС†С‹ Excel - null
+    		throw new IllegalArgumentException("Error. Wrong exemplar of \"Sheet\"");//РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
     	}
 		sheet=sh;
-    	row_num= sheet.getLastRowNum();//получаем количество строк
-    	if (row_num==-1) {// если строки отсутствуют - выбрасываем исключение
+    	row_num= sheet.getLastRowNum();//РїРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+    	if (row_num==-1) {// РµСЃР»Рё СЃС‚СЂРѕРєРё РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
     		throw new ExcelEmptyException();
     	}
         Iterator<Row> row_it = sheet.iterator();
-        for (int i = 0;i<3;i++) {// проверяем, что присутствуют первые 3 строки заголовка
+        for (int i = 0;i<3;i++) {// РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РїСЂРёСЃСѓС‚СЃС‚РІСѓСЋС‚ РїРµСЂРІС‹Рµ 3 СЃС‚СЂРѕРєРё Р·Р°РіРѕР»РѕРІРєР°
         	if(row_it.hasNext()) {
         		row_it.next();
         	}
-        	else {// если не хватает строк заголовка - выбрасываем исключение
+        	else {// РµСЃР»Рё РЅРµ С…РІР°С‚Р°РµС‚ СЃС‚СЂРѕРє Р·Р°РіРѕР»РѕРІРєР° - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
         		throw new ExcelHeaderFormatException();
         	}
         }
-        if(!row_it.hasNext()) {// если после заголовка больше нет строк - выбрасываем исключение
-        	//об отсутствии данных
+        if(!row_it.hasNext()) {// РµСЃР»Рё РїРѕСЃР»Рµ Р·Р°РіРѕР»РѕРІРєР° Р±РѕР»СЊС€Рµ РЅРµС‚ СЃС‚СЂРѕРє - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
+        	//РѕР± РѕС‚СЃСѓС‚СЃС‚РІРёРё РґР°РЅРЅС‹С…
         	throw new ExcelNoDataException();
         }
-        row_num-=2;// не учитываем первые 3 строки загловка Excel
+        row_num-=2;// РЅРµ СѓС‡РёС‚С‹РІР°РµРј РїРµСЂРІС‹Рµ 3 СЃС‚СЂРѕРєРё Р·Р°РіР»РѕРІРєР° Excel
         cll_value = vl;
 	}
 	
-	//Возврат числа строк данных
+	//Р’РѕР·РІСЂР°С‚ С‡РёСЃР»Р° СЃС‚СЂРѕРє РґР°РЅРЅС‹С…
 	public int get_row_count() {
 		return row_num;
 	}
   
-	//Считывание данных из Excel файла
+	//РЎС‡РёС‚С‹РІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· Excel С„Р°Р№Р»Р°
 	public Map<Integer,ArrayList<Object>> read_file() throws Exception{
-		Map<Integer,ArrayList<Object>> datas = new HashMap<Integer,ArrayList<Object>>();//словарь <номер строки, данные>
+		Map<Integer,ArrayList<Object>> datas = new HashMap<Integer,ArrayList<Object>>();//СЃР»РѕРІР°СЂСЊ <РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё, РґР°РЅРЅС‹Рµ>
 		for(int i=0;i<row_num;i++) {
-			Row r = sheet.getRow(i+3);//получаем строку Excel файла
-			if (r==null) {//Если она пуста - выбрасываем исключение
+			Row r = sheet.getRow(i+3);//РїРѕР»СѓС‡Р°РµРј СЃС‚СЂРѕРєСѓ Excel С„Р°Р№Р»Р°
+			if (r==null) {//Р•СЃР»Рё РѕРЅР° РїСѓСЃС‚Р° - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 				throw new ExcelRowNullException();
 			}
-			ArrayList<Object> lst = new ArrayList<Object>(11);//Инициализируем ArrayList для хранения данных строки
-			int col_num = r.getLastCellNum();//получаем число ячеек в строке
-			if (col_num!=11) {//если оно не равно 11 - выбрасываем исключение
+			ArrayList<Object> lst = new ArrayList<Object>(11);//РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј ArrayList РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РґР°РЅРЅС‹С… СЃС‚СЂРѕРєРё
+			int col_num = r.getLastCellNum();//РїРѕР»СѓС‡Р°РµРј С‡РёСЃР»Рѕ СЏС‡РµРµРє РІ СЃС‚СЂРѕРєРµ
+			if (col_num!=11) {//РµСЃР»Рё РѕРЅРѕ РЅРµ СЂР°РІРЅРѕ 11 - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 				throw new ExcelCellCountException(i+4);
 			}
-			for(int j=0;j<col_num;j++) {//проходим по всем ячейкам и добавляем данные в ArrayList
+			for(int j=0;j<col_num;j++) {//РїСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј СЏС‡РµР№РєР°Рј Рё РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ РІ ArrayList
 				lst.add(j,cll_value.getCellValue(r.getCell(j),i+4,j+1));
 			}
-			datas.put(i,lst);//Добавляем ArrayList в словарь
+			datas.put(i,lst);//Р”РѕР±Р°РІР»СЏРµРј ArrayList РІ СЃР»РѕРІР°СЂСЊ
 		}
 		return datas;
 	}

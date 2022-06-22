@@ -6,25 +6,25 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cur_totals implements Totals_i {// Класс определения "расчётного тотала"
+public class Cur_totals implements Totals_i {// РљР»Р°СЃСЃ РѕРїСЂРµРґРµР»РµРЅРёСЏ "СЂР°СЃС‡С‘С‚РЅРѕРіРѕ С‚РѕС‚Р°Р»Р°"
 
-	// Определение расчётного тотала
-	// select - экземпляр класса выполнения запроса "select"
-	//con - подключение к забе данных
-	//date - дата
+	// РћРїСЂРµРґРµР»РµРЅРёРµ СЂР°СЃС‡С‘С‚РЅРѕРіРѕ С‚РѕС‚Р°Р»Р°
+	// select - СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР° "select"
+	//con - РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р·Р°Р±Рµ РґР°РЅРЅС‹С…
+	//date - РґР°С‚Р°
 	public Map<Integer, Object> get_total(Query_select_i select, Connection con,Date date) throws Exception{
-		Map<Integer,Object> totals = new HashMap<Integer,Object>();// словарь расчётного тотала
-		//Ключ "0" - fact qliq
-		//Ключ "1" - fact qoil
-		//Ключ "2" - forecast qliq
-		//Ключ "3" - forecast qoil
-		//Ключ "4" - длина выборки 
+		Map<Integer,Object> totals = new HashMap<Integer,Object>();// СЃР»РѕРІР°СЂСЊ СЂР°СЃС‡С‘С‚РЅРѕРіРѕ С‚РѕС‚Р°Р»Р°
+		//РљР»СЋС‡ "0" - fact qliq
+		//РљР»СЋС‡ "1" - fact qoil
+		//РљР»СЋС‡ "2" - forecast qliq
+		//РљР»СЋС‡ "3" - forecast qoil
+		//РљР»СЋС‡ "4" - РґР»РёРЅР° РІС‹Р±РѕСЂРєРё 
 		for(int i = 0; i<5;i++) {
 			totals.put(i, 0);
 		}
-		ResultSet select_sample = select.select(con, date);//получаем выборку запроса "select"
+		ResultSet select_sample = select.select(con, date);//РїРѕР»СѓС‡Р°РµРј РІС‹Р±РѕСЂРєСѓ Р·Р°РїСЂРѕСЃР° "select"
 		int row_count = 0;
-		while (select_sample.next()) {//пока в выборке есть строки - подсчитываем тотал
+		while (select_sample.next()) {//РїРѕРєР° РІ РІС‹Р±РѕСЂРєРµ РµСЃС‚СЊ СЃС‚СЂРѕРєРё - РїРѕРґСЃС‡РёС‚С‹РІР°РµРј С‚РѕС‚Р°Р»
 			int j=0;
 			for(int i=1;i<9;i++) {
 				int var = (int)totals.get(j);
@@ -36,7 +36,7 @@ public class Cur_totals implements Totals_i {// Класс определения "расчётного то
 			}
 			row_count++;
 		}
-		totals.put(4, row_count);// добавляем число строк в словарь
+		totals.put(4, row_count);// РґРѕР±Р°РІР»СЏРµРј С‡РёСЃР»Рѕ СЃС‚СЂРѕРє РІ СЃР»РѕРІР°СЂСЊ
 		select.statement_close();
 		return totals;
 	}

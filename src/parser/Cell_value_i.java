@@ -2,12 +2,12 @@ package parser;
 
 import org.apache.poi.ss.usermodel.Cell;
 
-public interface Cell_value_i {//Интерфейс обработки ячейки excel файла
+public interface Cell_value_i {//РРЅС‚РµСЂС„РµР№СЃ РѕР±СЂР°Р±РѕС‚РєРё СЏС‡РµР№РєРё excel С„Р°Р№Р»Р°
 	
-	//Возрат значения считанной ячейки
-	//cl - считанная ячейка
-	//row_num - номер строки
-	//cell_num - номер ячейки
+	//Р’РѕР·СЂР°С‚ Р·РЅР°С‡РµРЅРёСЏ СЃС‡РёС‚Р°РЅРЅРѕР№ СЏС‡РµР№РєРё
+	//cl - СЃС‡РёС‚Р°РЅРЅР°СЏ СЏС‡РµР№РєР°
+	//row_num - РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё
+	//cell_num - РЅРѕРјРµСЂ СЏС‡РµР№РєРё
 	Object getCellValue(Cell cl,int row_num, int cell_num)throws Exception;
 	
 }

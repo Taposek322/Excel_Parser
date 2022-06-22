@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.util.Map;
 
-public interface Totals_i {//Интерфейс расчёта тотала
+public interface Totals_i {//РРЅС‚РµСЂС„РµР№СЃ СЂР°СЃС‡С‘С‚Р° С‚РѕС‚Р°Р»Р°
 	
-	// Определение расчётного тотала
-	// select - экземпляр класса выполнения запроса "select"
-	//con - подключение к забе данных
-	//date - дата
+	// РћРїСЂРµРґРµР»РµРЅРёРµ СЂР°СЃС‡С‘С‚РЅРѕРіРѕ С‚РѕС‚Р°Р»Р°
+	// select - СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР° "select"
+	//con - РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р·Р°Р±Рµ РґР°РЅРЅС‹С…
+	//date - РґР°С‚Р°
 	Map<Integer,Object> get_total(Query_select_i select, Connection con,Date date) throws Exception;
 }

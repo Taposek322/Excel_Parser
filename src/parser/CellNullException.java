@@ -1,6 +1,6 @@
 package parser;
 
-public class CellNullException extends Exception{//Исключение пустой ячейки в Excel файле
+public class CellNullException extends Exception{//РСЃРєР»СЋС‡РµРЅРёРµ РїСѓСЃС‚РѕР№ СЏС‡РµР№РєРё РІ Excel С„Р°Р№Р»Рµ
 	
 	private static final long serialVersionUID = 1L;
 	CellNullException(int row_num,int cell_num){

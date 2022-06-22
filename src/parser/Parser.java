@@ -6,33 +6,29 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class Parser {//Класс парсера
+public class Parser {//РљР»Р°СЃСЃ РїР°СЂСЃРµСЂР°
 	
-	protected DB database;//Экземпляр класса для работы с базой данных
-	protected Excel_reader rdr;//Экземпляр класса для считывания данных из Excel
-	protected Query_ins_i qr;//Экземпляр класса для вставки данных в бд
+	protected DB database;//Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С…
+	protected Excel_reader rdr;//Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЃС‡РёС‚С‹РІР°РЅРёСЏ РґР°РЅРЅС‹С… РёР· Excel
+	protected Query_ins_i qr;//Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ РІСЃС‚Р°РІРєРё РґР°РЅРЅС‹С… РІ Р±Рґ
 		
-    //Конструктор	
-	//databs - Экземпляр класса для работы с базой данных
-	//rd - Экземпляр класса для считывания данных из Excel
-	//qry- Экземпляр класса для вставки данных в бд
+    //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ	
+	//databs - Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С…
+	//rd - Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЃС‡РёС‚С‹РІР°РЅРёСЏ РґР°РЅРЅС‹С… РёР· Excel
+	//qry- Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ РІСЃС‚Р°РІРєРё РґР°РЅРЅС‹С… РІ Р±Рґ
 	Parser(DB databs, Excel_reader rd,Query_ins_i qry){
 		database=databs;
 		rdr = rd;
 		qr=qry;
 	}
 		
-	//Парсинг
+	//РџР°СЂСЃРёРЅРі
 	public void parse() throws Exception{
-		Map<Integer, ArrayList<Object>> datas = rdr.read_file();//считываем все данных из Excel
-		int row_count = rdr.get_row_count();//получаем количество считанных строк
+		Map<Integer, ArrayList<Object>> datas = rdr.read_file();//СЃС‡РёС‚С‹РІР°РµРј РІСЃРµ РґР°РЅРЅС‹С… РёР· Excel
+		int row_count = rdr.get_row_count();//РїРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‡РёС‚Р°РЅРЅС‹С… СЃС‚СЂРѕРє
 		for(int i=0;i<row_count;i++) {
-			qr.insert(database.get_connection(),datas.get(i),i+4);//построчно добавляем в бд данные 
+			qr.insert(database.get_connection(),datas.get(i),i+4);//РїРѕСЃС‚СЂРѕС‡РЅРѕ РґРѕР±Р°РІР»СЏРµРј РІ Р±Рґ РґР°РЅРЅС‹Рµ 
 		}
 	}
 	
 }
-
-
-
-

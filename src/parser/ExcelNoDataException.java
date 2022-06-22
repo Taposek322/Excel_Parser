@@ -1,6 +1,6 @@
 package parser;
 
-public class ExcelNoDataException extends Exception{//Исключение отсутсвтие данных в файле
+public class ExcelNoDataException extends Exception{//РСЃРєР»СЋС‡РµРЅРёРµ РѕС‚СЃСѓС‚СЃРІС‚РёРµ РґР°РЅРЅС‹С… РІ С„Р°Р№Р»Рµ
 	private static final long serialVersionUID = 1L;
 	ExcelNoDataException(){
 		super("Error. Excel file doesn`t have data");

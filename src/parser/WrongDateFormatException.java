@@ -1,6 +1,6 @@
 package parser;
 
-public class WrongDateFormatException extends Exception{//Исключение неправильного формата даты
+public class WrongDateFormatException extends Exception{//РСЃРєР»СЋС‡РµРЅРёРµ РЅРµРїСЂР°РІРёР»СЊРЅРѕРіРѕ С„РѕСЂРјР°С‚Р° РґР°С‚С‹
 	private static final long serialVersionUID = 1L;
 	WrongDateFormatException(){
 		super("Error. Wrong date format");

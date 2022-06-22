@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Date;
 
-public interface Query_select_i {//Интерфейс получения выборки по запросу "select"
+public interface Query_select_i {//РРЅС‚РµСЂС„РµР№СЃ РїРѕР»СѓС‡РµРЅРёСЏ РІС‹Р±РѕСЂРєРё РїРѕ Р·Р°РїСЂРѕСЃСѓ "select"
 	
-	//Получение выборки данных с определённой датой
-	//con - подключение к базе данных
-	//date - дата
+	//РџРѕР»СѓС‡РµРЅРёРµ РІС‹Р±РѕСЂРєРё РґР°РЅРЅС‹С… СЃ РѕРїСЂРµРґРµР»С‘РЅРЅРѕР№ РґР°С‚РѕР№
+	//con - РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
+	//date - РґР°С‚Р°
 	ResultSet select(Connection con,Date date) throws Exception;
 	
-	//Закрытие запроса
+	//Р—Р°РєСЂС‹С‚РёРµ Р·Р°РїСЂРѕСЃР°
 	public void statement_close() throws Exception;
 }

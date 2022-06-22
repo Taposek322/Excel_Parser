@@ -3,11 +3,11 @@ package parser;
 import java.util.ArrayList;
 import java.util.Map;
 
-interface Excel_reader{// интерфейс чтения данных из Excel
+interface Excel_reader{// РёРЅС‚РµСЂС„РµР№СЃ С‡С‚РµРЅРёСЏ РґР°РЅРЅС‹С… РёР· Excel
 	
-	//Считывание данных из Excel файла
+	//РЎС‡РёС‚С‹РІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· Excel С„Р°Р№Р»Р°
 	Map<Integer,ArrayList<Object>> read_file() throws Exception;
 	
-	//Возврат числа строк данных
+	//Р’РѕР·РІСЂР°С‚ С‡РёСЃР»Р° СЃС‚СЂРѕРє РґР°РЅРЅС‹С…
 	int get_row_count();
 }

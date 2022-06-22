@@ -7,18 +7,18 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 
-public class Cur_query_ins implements Query_ins_i {//Класс запроса вставки данных в таблицу
-	//Вставка считанной строки в таблицу "data_t"
-	//con - экземпляр подключения к базе данных
-	// datas - данные строки, считанные из Excel файла
-	//row_num - число строк в Excel файле
+public class Cur_query_ins implements Query_ins_i {//РљР»Р°СЃСЃ Р·Р°РїСЂРѕСЃР° РІСЃС‚Р°РІРєРё РґР°РЅРЅС‹С… РІ С‚Р°Р±Р»РёС†Сѓ
+	//Р’СЃС‚Р°РІРєР° СЃС‡РёС‚Р°РЅРЅРѕР№ СЃС‚СЂРѕРєРё РІ С‚Р°Р±Р»РёС†Сѓ "data_t"
+	//con - СЌРєР·РµРјРїР»СЏСЂ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
+	// datas - РґР°РЅРЅС‹Рµ СЃС‚СЂРѕРєРё, СЃС‡РёС‚Р°РЅРЅС‹Рµ РёР· Excel С„Р°Р№Р»Р°
+	//row_num - С‡РёСЃР»Рѕ СЃС‚СЂРѕРє РІ Excel С„Р°Р№Р»Рµ
 	public void insert(Connection con, ArrayList<Object> datas, int row_num) throws Exception {
-		// запрос добавления данных в таблицу data_t
+		// Р·Р°РїСЂРѕСЃ РґРѕР±Р°РІР»РµРЅРёСЏ РґР°РЅРЅС‹С… РІ С‚Р°Р±Р»РёС†Сѓ data_t
 		PreparedStatement st = con.prepareStatement("INSERT INTO data_t (id,company_name,fact_qliq_data1,"
 				+ "fact_qliq_data2, fact_qoil_data1,fact_qoil_data2,"
 				+ "forecast_qliq_data1,forecast_qliq_data2,forecast_qoil_data1,"
 				+ "forecast_qoil_data2,date) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-		for (int i=0;i<11;i++) {// добавляем параметры в запрос
+		for (int i=0;i<11;i++) {// РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹ РІ Р·Р°РїСЂРѕСЃ
 			switch (i){
 				case 1:
 				{
@@ -40,7 +40,7 @@ public class Cur_query_ins implements Query_ins_i {//Класс запроса вставки данны
 			}	
 		}
 		int res=st.executeUpdate();
-		if(res!=1) {//Если число добавленных строк не равно "1", выбрасываем исключение 
+		if(res!=1) {//Р•СЃР»Рё С‡РёСЃР»Рѕ РґРѕР±Р°РІР»РµРЅРЅС‹С… СЃС‚СЂРѕРє РЅРµ СЂР°РІРЅРѕ "1", РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ 
 			throw new SQLException("Error. Cant add data from "+row_num+"row in database");
 		}
 		st.close();

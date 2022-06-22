@@ -1,6 +1,6 @@
 package parser;
 
-public class SheetException extends Exception {//Исключение при отсутсвии листа в Excel файле
+public class SheetException extends Exception {//РСЃРєР»СЋС‡РµРЅРёРµ РїСЂРё РѕС‚СЃСѓС‚СЃРІРёРё Р»РёСЃС‚Р° РІ Excel С„Р°Р№Р»Рµ
 	private static final long serialVersionUID = 1L;
 	SheetException(){
 		super("Error. Excel file doesnt contain first sheet");

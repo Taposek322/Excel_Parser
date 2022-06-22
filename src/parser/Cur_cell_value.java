@@ -4,33 +4,33 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 
 
-public class Cur_cell_value implements Cell_value_i{// Класс обработки значения ячейки Excel файла
-	//Возрат значения считанной ячейки
-	//cl - считанная ячейка
-	//row_num - номер строки
-	//cell_num - номер ячейки
+public class Cur_cell_value implements Cell_value_i{// РљР»Р°СЃСЃ РѕР±СЂР°Р±РѕС‚РєРё Р·РЅР°С‡РµРЅРёСЏ СЏС‡РµР№РєРё Excel С„Р°Р№Р»Р°
+	//Р’РѕР·СЂР°С‚ Р·РЅР°С‡РµРЅРёСЏ СЃС‡РёС‚Р°РЅРЅРѕР№ СЏС‡РµР№РєРё
+	//cl - СЃС‡РёС‚Р°РЅРЅР°СЏ СЏС‡РµР№РєР°
+	//row_num - РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё
+	//cell_num - РЅРѕРјРµСЂ СЏС‡РµР№РєРё
 	public Object getCellValue(Cell cl, int row_num, int cell_num)throws Exception{
-		Object cell_value="";// Значение ячейки
-		if (cl==null) {// Если ячейка пустая - выбрасываем исключение
+		Object cell_value="";// Р—РЅР°С‡РµРЅРёРµ СЏС‡РµР№РєРё
+		if (cl==null) {// Р•СЃР»Рё СЏС‡РµР№РєР° РїСѓСЃС‚Р°СЏ - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 			throw new CellNullException(row_num,cell_num);
 		}
-		//Считываем значение ячейки в зависимости от его типа
-		//Т.к. в нашем файле мы работаем только с целыми числами,
-		//датами и строками, будет обрабатывать только эти типы данных
+		//РЎС‡РёС‚С‹РІР°РµРј Р·РЅР°С‡РµРЅРёРµ СЏС‡РµР№РєРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РµРіРѕ С‚РёРїР°
+		//Рў.Рє. РІ РЅР°С€РµРј С„Р°Р№Р»Рµ РјС‹ СЂР°Р±РѕС‚Р°РµРј С‚РѕР»СЊРєРѕ СЃ С†РµР»С‹РјРё С‡РёСЃР»Р°РјРё,
+		//РґР°С‚Р°РјРё Рё СЃС‚СЂРѕРєР°РјРё, Р±СѓРґРµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ С‚РѕР»СЊРєРѕ СЌС‚Рё С‚РёРїС‹ РґР°РЅРЅС‹С…
 		switch(cl.getCellType()) {
 			case NUMERIC:{
-				if (DateUtil.isCellDateFormatted(cl)) {//Если считанная ячейка - дата
+				if (DateUtil.isCellDateFormatted(cl)) {//Р•СЃР»Рё СЃС‡РёС‚Р°РЅРЅР°СЏ СЏС‡РµР№РєР° - РґР°С‚Р°
 					cell_value =cl.getDateCellValue();
 				}else {
-					cell_value = (int)cl.getNumericCellValue();//Если считанная ячейка - число
+					cell_value = (int)cl.getNumericCellValue();//Р•СЃР»Рё СЃС‡РёС‚Р°РЅРЅР°СЏ СЏС‡РµР№РєР° - С‡РёСЃР»Рѕ
 				}
 				break;
 			}
 			case STRING:{
-				cell_value = cl.getStringCellValue();//Если считанная ячейка - строка
+				cell_value = cl.getStringCellValue();//Р•СЃР»Рё СЃС‡РёС‚Р°РЅРЅР°СЏ СЏС‡РµР№РєР° - СЃС‚СЂРѕРєР°
 				break;
 			}
-			default://если совпадений нет - выбрасываем исключение
+			default://РµСЃР»Рё СЃРѕРІРїР°РґРµРЅРёР№ РЅРµС‚ - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 			{
 				throw new ExcelCellFormatException(row_num,cell_num);
 			}

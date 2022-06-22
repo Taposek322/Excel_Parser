@@ -5,14 +5,14 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Cur_query_select implements Query_select_i{// Класс выполнения запроса "select"
-	protected PreparedStatement st;// запрос к базе данных
+public class Cur_query_select implements Query_select_i{// РљР»Р°СЃСЃ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР° "select"
+	protected PreparedStatement st;// Р·Р°РїСЂРѕСЃ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
 	
-	//Получение выборки данных с определённой датой
-	//con - подключение к базе данных
-	//date - дата
+	//РџРѕР»СѓС‡РµРЅРёРµ РІС‹Р±РѕСЂРєРё РґР°РЅРЅС‹С… СЃ РѕРїСЂРµРґРµР»С‘РЅРЅРѕР№ РґР°С‚РѕР№
+	//con - РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
+	//date - РґР°С‚Р°
 	public ResultSet select(Connection con,Date date) throws Exception {
-		//запрос "select" к таблице data_t
+		//Р·Р°РїСЂРѕСЃ "select" Рє С‚Р°Р±Р»РёС†Рµ data_t
 		PreparedStatement st = con.prepareStatement("Select fact_qliq_data1,fact_qliq_data2,fact_qoil_data1,"
 				+ "fact_qoil_data2,forecast_qliq_data1,forecast_qliq_data2,forecast_qoil_data1,forecast_qoil_data2 "
 				+ "from data_t WHERE date = ?;");
@@ -21,7 +21,7 @@ public class Cur_query_select implements Query_select_i{// Класс выполнения запр
 		return res;
 	}
 	
-	//Закрытие запроса
+	//Р—Р°РєСЂС‹С‚РёРµ Р·Р°РїСЂРѕСЃР°
 	public void statement_close() throws Exception {
 		if(st!=null) {
 			st.close();

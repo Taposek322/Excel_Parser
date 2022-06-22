@@ -1,6 +1,6 @@
 package parser;
 
-public class ExcelRowNullException extends Exception{//Исключение пустой строки в файле
+public class ExcelRowNullException extends Exception{//РСЃРєР»СЋС‡РµРЅРёРµ РїСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРё РІ С„Р°Р№Р»Рµ
 	private static final long serialVersionUID = 1L;
 	ExcelRowNullException(){
 		super("Error. Excel file has empty row");

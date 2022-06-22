@@ -16,11 +16,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class Main {
 
 	public static void main(String[] args) {
-		int cmd=-1;//команда
-		try (Scanner in = new Scanner(System.in)){//Создаём экземпляр класса для считывание данных из консоли
-			Properties prop = new Properties();//Создаём экземпляр класса для считывания данных из конфиг файла
-			prop.load(new FileInputStream(new File("config\\db.ini")));// получаем путь к базе данных
-			DB database = new SQLite_db(prop.getProperty("DB_path"));// Создаём экземпляр класса для работы с SQLite
+		int cmd=-1;//РєРѕРјР°РЅРґР°
+		try (Scanner in = new Scanner(System.in)){//РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЃС‡РёС‚С‹РІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· РєРѕРЅСЃРѕР»Рё
+			Properties prop = new Properties();//РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЃС‡РёС‚С‹РІР°РЅРёСЏ РґР°РЅРЅС‹С… РёР· РєРѕРЅС„РёРі С„Р°Р№Р»Р°
+			prop.load(new FileInputStream(new File("config\\db.ini")));// РїРѕР»СѓС‡Р°РµРј РїСѓС‚СЊ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
+			DB database = new SQLite_db(prop.getProperty("DB_path"));// РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ SQLite
 			do {
 				System.out.println("Choose operation:");
 				System.out.println("1)Parse data form excel to database");
@@ -28,37 +28,37 @@ public class Main {
 				System.out.println("0)End program;");
 				cmd = in.nextInt();
 				switch(cmd) {
-					case 1://Парсер
+					case 1://РџР°СЂСЃРµСЂ
 					{
 						System.out.println("Insert path to excel file:");
-						String filepath = in.next();//считываем путь к файлу
-						WB_create wb = new WB_create(filepath);//Создаём экземпляр класса для работы с Excel файлом
-						Cell_value_i cll_v = new Cur_cell_value();//Создаём экземпляр класса для обработки ячеек Excel
+						String filepath = in.next();//СЃС‡РёС‚С‹РІР°РµРј РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+						WB_create wb = new WB_create(filepath);//РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Excel С„Р°Р№Р»РѕРј
+						Cell_value_i cll_v = new Cur_cell_value();//РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё СЏС‡РµРµРє Excel
 						ArrayList<Object> w = wb.get_wb_and_sheet();
-						Cur_reader rd = new Cur_reader((Workbook)w.get(0), (Sheet)w.get(1),cll_v);//Создаём экземпляр класса для считывания данных из Excel
-						Query_ins_i qr = new Cur_query_ins();// Создаём экземпляр класса для добавление данных в базу данных
-						Parser p = new Parser(database,rd,qr);//Создаём экземплеяр класса парсера
-						p.parse();//Вызываем метод добавления данных в бд
+						Cur_reader rd = new Cur_reader((Workbook)w.get(0), (Sheet)w.get(1),cll_v);//РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЃС‡РёС‚С‹РІР°РЅРёСЏ РґР°РЅРЅС‹С… РёР· Excel
+						Query_ins_i qr = new Cur_query_ins();// РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С… РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…
+						Parser p = new Parser(database,rd,qr);//РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»РµСЏСЂ РєР»Р°СЃСЃР° РїР°СЂСЃРµСЂР°
+						p.parse();//Р’С‹Р·С‹РІР°РµРј РјРµС‚РѕРґ РґРѕР±Р°РІР»РµРЅРёСЏ РґР°РЅРЅС‹С… РІ Р±Рґ
 						System.out.println("Data added successfully to database");
-						wb.wb_close();//Закрываем Excel файл
+						wb.wb_close();//Р—Р°РєСЂС‹РІР°РµРј Excel С„Р°Р№Р»
 						break;
 					}
-					case 2://Вывод тотала с определённой датой
+					case 2://Р’С‹РІРѕРґ С‚РѕС‚Р°Р»Р° СЃ РѕРїСЂРµРґРµР»С‘РЅРЅРѕР№ РґР°С‚РѕР№
 					{
 						System.out.println("Insert date in format \"yyyy-mm-dd\"");
-						String date = in.next();// Считываем дату
-						Pattern reg = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");// Проверяем, что дата в формате "yyyy-mm-dd"
+						String date = in.next();// РЎС‡РёС‚С‹РІР°РµРј РґР°С‚Сѓ
+						Pattern reg = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");// РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РґР°С‚Р° РІ С„РѕСЂРјР°С‚Рµ "yyyy-mm-dd"
 						Matcher m = reg.matcher(date);
-						if(!m.find()) {//если формат даты не совпадает "yyyy-mm-dd" - выбрасываем исключение
+						if(!m.find()) {//РµСЃР»Рё С„РѕСЂРјР°С‚ РґР°С‚С‹ РЅРµ СЃРѕРІРїР°РґР°РµС‚ "yyyy-mm-dd" - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 							throw new WrongDateFormatException();
 						}
-						Totals_i ttl_class = new Cur_totals();//Создаём экземпляр класса для определения расчётного тотала
-						Query_select_i sel = new Cur_query_select();//Создаём экземпляр класса для получения выборки по запросу "select"
-						//получаем тотальный расчёт и количество строк в запросе в виде словаря
+						Totals_i ttl_class = new Cur_totals();//РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ СЂР°СЃС‡С‘С‚РЅРѕРіРѕ С‚РѕС‚Р°Р»Р°
+						Query_select_i sel = new Cur_query_select();//РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РІС‹Р±РѕСЂРєРё РїРѕ Р·Р°РїСЂРѕСЃСѓ "select"
+						//РїРѕР»СѓС‡Р°РµРј С‚РѕС‚Р°Р»СЊРЅС‹Р№ СЂР°СЃС‡С‘С‚ Рё РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ Р·Р°РїСЂРѕСЃРµ РІ РІРёРґРµ СЃР»РѕРІР°СЂСЏ
 						Map<Integer,Object> totals = ttl_class.get_total(sel,database.get_connection(),	Date.valueOf(date));
-						if ((int)totals.get(4)==0) {//если в запросе нет строк
+						if ((int)totals.get(4)==0) {//РµСЃР»Рё РІ Р·Р°РїСЂРѕСЃРµ РЅРµС‚ СЃС‚СЂРѕРє
 							System.out.println("There is no data with entered date");
-						}else {// если в запросе есть строки - выводим тотал
+						}else {// РµСЃР»Рё РІ Р·Р°РїСЂРѕСЃРµ РµСЃС‚СЊ СЃС‚СЂРѕРєРё - РІС‹РІРѕРґРёРј С‚РѕС‚Р°Р»
 							System.out.println("Fact qliq:"+(int)totals.get(0));
 							System.out.println("Fact qoil:"+(int)totals.get(1));
 							System.out.println("Forecast qliq:"+(int)totals.get(2));
@@ -66,7 +66,7 @@ public class Main {
 						}
 						break;
 					}
-					case 0://выход из программы
+					case 0://РІС‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹
 					{
 						break;
 					}
@@ -76,12 +76,10 @@ public class Main {
 					}
 				}
 			}while(cmd!=0);
-			database.con_close();//закрываем соединение с бд
+			database.con_close();//Р·Р°РєСЂС‹РІР°РµРј СЃРѕРµРґРёРЅРµРЅРёРµ СЃ Р±Рґ
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
 		
 	}
 }

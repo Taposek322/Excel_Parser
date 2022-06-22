@@ -5,25 +5,25 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class SQLite_db implements DB{// класс бд SQLite
+public class SQLite_db implements DB{// РєР»Р°СЃСЃ Р±Рґ SQLite
 	
-	protected Connection con;//Экземпляр подключения к бд
-	protected String sql_con = "jdbc:sqlite:";// Часть строки подключения к бд
+	protected Connection con;//Р­РєР·РµРјРїР»СЏСЂ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Рґ
+	protected String sql_con = "jdbc:sqlite:";// Р§Р°СЃС‚СЊ СЃС‚СЂРѕРєРё РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Рґ
 	
-	//Конструктор создания подключения к бд
-	//db_name - путь к бд
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕР·РґР°РЅРёСЏ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Рґ
+	//db_name - РїСѓС‚СЊ Рє Р±Рґ
 	SQLite_db(String db_name) throws SQLException{
 		con = DriverManager.getConnection(sql_con+db_name);
 	}
 
-	//закрытие подключения к базе данных
+	//Р·Р°РєСЂС‹С‚РёРµ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
 	public void con_close() throws SQLException{
 		if (con!=null) {
 			con.close();
 		}
 	}
 	
-	//Возврат подключения к базе данных
+	//Р’РѕР·РІСЂР°С‚ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
 	public Connection get_connection(){
 		return con;
 	}

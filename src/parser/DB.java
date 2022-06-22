@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-interface DB{// интерфейс базы данных
+interface DB{// РёРЅС‚РµСЂС„РµР№СЃ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
 	
-	//Возврат подключения к базе данных
+	//Р’РѕР·РІСЂР°С‚ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
 	Connection get_connection();
 	
-	//закрытие подключения к базе данных
+	//Р·Р°РєСЂС‹С‚РёРµ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
 	public void con_close() throws SQLException;
 }

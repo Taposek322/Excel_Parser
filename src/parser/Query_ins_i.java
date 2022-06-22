@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 
-public interface Query_ins_i {//Интерфейс вставки данных в бд
-	//Вставка считанной строки в таблицу "data_t"
-	//con - экземпляр подключения к базе данных
-	// datas - данные строки, считанные из Excel файла
-	//row_num - число строк в Excel файле
+public interface Query_ins_i {//РРЅС‚РµСЂС„РµР№СЃ РІСЃС‚Р°РІРєРё РґР°РЅРЅС‹С… РІ Р±Рґ
+	//Р’СЃС‚Р°РІРєР° СЃС‡РёС‚Р°РЅРЅРѕР№ СЃС‚СЂРѕРєРё РІ С‚Р°Р±Р»РёС†Сѓ "data_t"
+	//con - СЌРєР·РµРјРїР»СЏСЂ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
+	// datas - РґР°РЅРЅС‹Рµ СЃС‚СЂРѕРєРё, СЃС‡РёС‚Р°РЅРЅС‹Рµ РёР· Excel С„Р°Р№Р»Р°
+	//row_num - С‡РёСЃР»Рѕ СЃС‚СЂРѕРє РІ Excel С„Р°Р№Р»Рµ
 	void insert(Connection con, ArrayList<Object> datas,int row_num) throws Exception;
 }

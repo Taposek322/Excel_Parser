@@ -1,6 +1,6 @@
 package parser;
 
-public class ExcelEmptyException extends Exception{//Исключение пустого Excel файла
+public class ExcelEmptyException extends Exception{//РСЃРєР»СЋС‡РµРЅРёРµ РїСѓСЃС‚РѕРіРѕ Excel С„Р°Р№Р»Р°
 	private static final long serialVersionUID = 1L;
 	ExcelEmptyException(){
 		super("Error. Excel file is empty");

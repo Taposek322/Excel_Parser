@@ -9,30 +9,30 @@ import java.io.IOException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class WB_create {//Класс для открытия xlsx файла
-	protected XSSFWorkbook workBook;//Экземпляр класса для работы с xlsx файлом
-	protected XSSFSheet sheet;//Экземпляр класса страницы xlsx файла
+public class WB_create {//РљР»Р°СЃСЃ РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ xlsx С„Р°Р№Р»Р°
+	protected XSSFWorkbook workBook;//Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ xlsx С„Р°Р№Р»РѕРј
+	protected XSSFSheet sheet;//Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° СЃС‚СЂР°РЅРёС†С‹ xlsx С„Р°Р№Р»Р°
 	
-	//Открытие xlsx файла
-	//filename - путь к xlsx файлу
+	//РћС‚РєСЂС‹С‚РёРµ xlsx С„Р°Р№Р»Р°
+	//filename - РїСѓС‚СЊ Рє xlsx С„Р°Р№Р»Сѓ
 	WB_create(String filename) throws Exception {
-		int index = filename.lastIndexOf(".");//Находим индекс последнего вхождения символа "."
-		if(index == -1) {//если символ "." отсутсвтует - выбрасываем исключение
+		int index = filename.lastIndexOf(".");//РќР°С…РѕРґРёРј РёРЅРґРµРєСЃ РїРѕСЃР»РµРґРЅРµРіРѕ РІС…РѕР¶РґРµРЅРёСЏ СЃРёРјРІРѕР»Р° "."
+		if(index == -1) {//РµСЃР»Рё СЃРёРјРІРѕР» "." РѕС‚СЃСѓС‚СЃРІС‚СѓРµС‚ - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 			throw new FileNotFoundException("Error. Wrong path to xlsx file");
 		}
-		String exst = filename.substring(index);//получаем подстроку с расширением файла
-		if (!exst.equalsIgnoreCase(".xlsx")) {//если расширение не "xlsx" - выбрасываем исключение
+		String exst = filename.substring(index);//РїРѕР»СѓС‡Р°РµРј РїРѕРґСЃС‚СЂРѕРєСѓ СЃ СЂР°СЃС€РёСЂРµРЅРёРµРј С„Р°Р№Р»Р°
+		if (!exst.equalsIgnoreCase(".xlsx")) {//РµСЃР»Рё СЂР°СЃС€РёСЂРµРЅРёРµ РЅРµ "xlsx" - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 			throw new IllegalArgumentException ("Error. Wrong extension. File might must xlsx extension");
 		}
-		FileInputStream xlsx_file = new FileInputStream(new File(filename));// создаём файловый поток
-		workBook = new XSSFWorkbook(xlsx_file);//Открываем xlsx файл
-		sheet = workBook.getSheetAt(0);// получем первый листр файла
-		if(sheet==null) {// если лист отсутсвует - выбрасываем исключение.
+		FileInputStream xlsx_file = new FileInputStream(new File(filename));// СЃРѕР·РґР°С‘Рј С„Р°Р№Р»РѕРІС‹Р№ РїРѕС‚РѕРє
+		workBook = new XSSFWorkbook(xlsx_file);//РћС‚РєСЂС‹РІР°РµРј xlsx С„Р°Р№Р»
+		sheet = workBook.getSheetAt(0);// РїРѕР»СѓС‡РµРј РїРµСЂРІС‹Р№ Р»РёСЃС‚СЂ С„Р°Р№Р»Р°
+		if(sheet==null) {// РµСЃР»Рё Р»РёСЃС‚ РѕС‚СЃСѓС‚СЃРІСѓРµС‚ - РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ.
     		throw new SheetException();
     	}
 	}
 	
-	//Возврат класса открытого xlsx файла и первого листа
+	//Р’РѕР·РІСЂР°С‚ РєР»Р°СЃСЃР° РѕС‚РєСЂС‹С‚РѕРіРѕ xlsx С„Р°Р№Р»Р° Рё РїРµСЂРІРѕРіРѕ Р»РёСЃС‚Р°
 	public ArrayList<Object> get_wb_and_sheet() {
 		ArrayList<Object> wb_list = new ArrayList<Object>(2);
 		wb_list.add(0,workBook);
@@ -40,7 +40,7 @@ public class WB_create {//Класс для открытия xlsx файла
 		return wb_list;
 	}
 	
-	//Закрытие файла
+	//Р—Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
 	public void wb_close() throws IOException{
 		if (workBook!=null) {
 			workBook.close();
